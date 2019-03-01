@@ -29,7 +29,7 @@ public class BenchmarkController extends AbstractBenchmarkController {
         NodeIterator iterator = benchmarkParamModel.listObjectsOfProperty(benchmarkParamModel
                 .getProperty("http://example.org/myParameter"));
 
-        logger.info(" --------------------- --------------------------------------");
+        logger.info(" ---------------------     ----------------     --------" + iterator.next().asLiteral().getString());
 
       //  NodeIterator iterator = benchmarkParamModel.listObjectsOfProperty(benchmarkParamModel
       //          .getProperty(BENCHMARK_URI+"messages"));
