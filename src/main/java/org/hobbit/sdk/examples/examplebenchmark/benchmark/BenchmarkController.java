@@ -13,6 +13,7 @@ import java.io.IOException;
 import static org.hobbit.sdk.examples.examplebenchmark.Constants.*;
 
 
+
 public class BenchmarkController extends AbstractBenchmarkController {
     private static final Logger logger = LoggerFactory.getLogger(BenchmarkController.class);
 
@@ -22,14 +23,15 @@ public class BenchmarkController extends AbstractBenchmarkController {
         super.init();
         logger.debug("Init()");
 
+        logger.info(" ---------------------     ----------------     --------" );
         // Your initialization code comes here...
 
         // You might want to load parameters from the benchmarks parameter model
-        // You might want to load parameters from the benchmarks parameter model
+        String BENCHMARK_URI_ = "http://project-hobbit.eu/dummybenchmark/";
         NodeIterator iterator = benchmarkParamModel.listObjectsOfProperty(benchmarkParamModel
-                .getProperty("http://example.org/myParameter"));
+                .getProperty(BENCHMARK_URI_+"#messages"));
 
-        logger.info(" ---------------------     ----------------     --------" + iterator.next().asLiteral().getString());
+        logger.info(" ---------------------     ----------      ------     --------" + iterator.next().asLiteral().getString());
 
       //  NodeIterator iterator = benchmarkParamModel.listObjectsOfProperty(benchmarkParamModel
       //          .getProperty(BENCHMARK_URI+"messages"));
