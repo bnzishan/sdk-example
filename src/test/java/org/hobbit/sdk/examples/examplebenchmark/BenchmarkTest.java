@@ -160,10 +160,10 @@ public class BenchmarkTest {
         //comment the .systemAdapter(systemAdapter) line below to use the code for running from python
         CommandReactionsBuilder commandReactionsBuilder = new CommandReactionsBuilder(componentsExecutor, commandQueueListener)
                         .benchmarkController(benchmarkController).benchmarkControllerImageName(BENCHMARK_IMAGE_NAME)
-                        .dataGenerator(dataGen).dataGeneratorImageName(dataGeneratorBuilder.getImageName())
-                        .taskGenerator(taskGen).taskGeneratorImageName(taskGeneratorBuilder.getImageName())
-                        .evalStorage(evalStorage).evalStorageImageName(evalStorageBuilder.getImageName())
-                        .evalModule(evalModule).evalModuleImageName(evalModuleBuilder.getImageName())
+                        .dataGenerator(dataGen).dataGeneratorImageName(DATAGEN_IMAGE_NAME)
+                        .taskGenerator(taskGen).taskGeneratorImageName(TASKGEN_IMAGE_NAME)
+                        .evalStorage(evalStorage).evalStorageImageName(EVAL_STORAGE_IMAGE_NAME)
+                        .evalModule(evalModule).evalModuleImageName(EVAL_STORAGE_IMAGE_NAME)
                         .systemAdapter(systemAdapter).systemAdapterImageName(SYSTEM_IMAGE_NAME)
                         //.customContainerImage(systemAdapter, DUMMY_SYSTEM_IMAGE_NAME)
                 ;
@@ -180,12 +180,12 @@ public class BenchmarkTest {
         String benchmarkContainerId = "benchmark";
         String systemContainerId = "system";
 
-//        componentsExecutor.submit(benchmarkController, benchmarkContainerId, new String[]{ HOBBIT_EXPERIMENT_URI_KEY+"="+EXPERIMENT_URI,  BENCHMARK_PARAMETERS_MODEL_KEY+"="+ createBenchmarkParameters() });
-//        componentsExecutor.submit(systemAdapter, systemContainerId, new String[]{ SYSTEM_PARAMETERS_MODEL_KEY+"="+ createSystemParameters() });
+        componentsExecutor.submit(benchmarkController, benchmarkContainerId, new String[]{ HOBBIT_EXPERIMENT_URI_KEY+"="+NEW_EXPERIMENT_URI,  BENCHMARK_PARAMETERS_MODEL_KEY+"="+ createBenchmarkParameters() });
+        componentsExecutor.submit(systemAdapter, systemContainerId, new String[]{ SYSTEM_PARAMETERS_MODEL_KEY+"="+ createSystemParameters() });
 
         //Alternative. Start components via command queue (will be executed by the platform (if running))
-        benchmarkContainerId = commandQueueListener.createContainer(benchmarkBuilder.getImageName(), "benchmark", benchmarkParamsStr);
-        systemContainerId = commandQueueListener.createContainer(systemAdapterBuilder.getImageName(), "system" , systemParamsStr);
+  //      benchmarkContainerId = commandQueueListener.createContainer(benchmarkBuilder.getImageName(), "benchmark", benchmarkParamsStr);
+  //      systemContainerId = commandQueueListener.createContainer(systemAdapterBuilder.getImageName(), "system" , systemParamsStr);
 
         environmentVariables.set("BENCHMARK_CONTAINER_ID", benchmarkContainerId);
         environmentVariables.set("SYSTEM_CONTAINER_ID", systemContainerId);

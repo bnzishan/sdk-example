@@ -25,7 +25,9 @@ public class BenchmarkController extends AbstractBenchmarkController {
 
         // You might want to load parameters from the benchmarks parameter model
         NodeIterator iterator = benchmarkParamModel.listObjectsOfProperty(benchmarkParamModel
-                .getProperty("http://example.org/myParameter"));
+                .getProperty(BENCHMARK_URI+"messages"));
+
+        logger.info("messages:                 " + iterator.next().asLiteral().getString());
 
         // Create the other components
 
