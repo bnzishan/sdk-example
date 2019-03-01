@@ -27,9 +27,9 @@ public class BenchmarkController extends AbstractBenchmarkController {
         // Your initialization code comes here...
 
         // You might want to load parameters from the benchmarks parameter model
-        String BENCHMARK_URI_ = "http://project-hobbit.eu/dummybenchmark/";
+     //   String BENCHMARK_URI_ = "http://project-hobbit.eu/dummybenchmark/";
         NodeIterator iterator = benchmarkParamModel.listObjectsOfProperty(benchmarkParamModel
-                .getProperty(BENCHMARK_URI_+"#messages"));
+                .getProperty(BENCHMARK_URI+"#messages"));
 
         logger.info(" ---------------------     ----------      ------     --------" + iterator.next().asLiteral().getString());
 

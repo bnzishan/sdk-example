@@ -31,8 +31,8 @@ import java.util.Date;
 import static org.apache.jena.rdf.model.ModelFactory.createDefaultModel;
 import static org.hobbit.core.Constants.*;
 
-import static org.hobbit.sdk.Constants.BENCHMARK_URI;
-import static org.hobbit.sdk.Constants.GIT_USERNAME;
+//import static org.hobbit.sdk.Constants.BENCHMARK_URI;
+//import static org.hobbit.sdk.Constants.GIT_USERNAME;
 import static org.hobbit.sdk.examples.examplebenchmark.Constants.*;
 
 /**
@@ -201,7 +201,7 @@ public class BenchmarkTest {
         Model model = createDefaultModel();
         Resource experimentResource = model.createResource(org.hobbit.core.Constants.NEW_EXPERIMENT_URI);
         model.add(experimentResource, RDF.type, HOBBIT.Experiment);
-        model.add(experimentResource, model.createProperty(BENCHMARK_URI+"#messages"),"100");
+        model.add(experimentResource, model.createProperty(BENCHMARK_URI+"#messages"),"200");
         return model;
 
     }
