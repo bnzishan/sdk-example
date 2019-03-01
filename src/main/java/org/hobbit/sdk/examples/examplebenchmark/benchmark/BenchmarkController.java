@@ -18,16 +18,23 @@ public class BenchmarkController extends AbstractBenchmarkController {
 
     @Override
     public void init() throws Exception {
+        logger.info(" --------------------- --------------------------------------");
         super.init();
         logger.debug("Init()");
 
         // Your initialization code comes here...
 
         // You might want to load parameters from the benchmarks parameter model
+        // You might want to load parameters from the benchmarks parameter model
         NodeIterator iterator = benchmarkParamModel.listObjectsOfProperty(benchmarkParamModel
-                .getProperty(BENCHMARK_URI+"messages"));
+                .getProperty("http://example.org/myParameter"));
 
-        logger.info("messages:                 " + iterator.next().asLiteral().getString());
+        logger.info(" --------------------- --------------------------------------");
+
+      //  NodeIterator iterator = benchmarkParamModel.listObjectsOfProperty(benchmarkParamModel
+      //          .getProperty(BENCHMARK_URI+"messages"));
+
+     //   logger.info("messages:                 " + iterator.next().asLiteral().getString());
 
         // Create the other components
 
