@@ -40,10 +40,8 @@ public class SystemAdapter extends AbstractSystemAdapter {
             }
         }
 
-        logger.debug("SA ----------->>>>>>>>>>>> " + parameters.get("systemParam123"));
-
         objIterator = systemParamModel.listObjectsOfProperty(systemParamModel
-                .getProperty(SYSTEM_URI+"#messages"));
+                .getProperty(SYSTEM_URI+"#systemParam123"));
 
         logger.info(" SA ----     -----      ------     --------" + iterator.next().asLiteral().getString());
     }
