@@ -2,6 +2,7 @@ package org.hobbit.sdk.examples.examplebenchmark;
 
 
 import org.apache.jena.rdf.model.Model;
+import org.apache.jena.rdf.model.Property;
 import org.apache.jena.rdf.model.Resource;
 import org.apache.jena.vocabulary.RDF;
 import org.hobbit.core.components.Component;
@@ -23,6 +24,8 @@ import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.contrib.java.lang.system.EnvironmentVariables;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.IOException;
@@ -53,6 +56,7 @@ public class BenchmarkTest {
     SystemAdapterDockerBuilder systemAdapterBuilder;
     EvalModuleDockerBuilder evalModuleBuilder;
 
+    private static Logger logger = LoggerFactory.getLogger(BenchmarkTest.class);
 
 
     public void init(Boolean useCachedImage) throws Exception {
@@ -202,6 +206,14 @@ public class BenchmarkTest {
         Resource experimentResource = model.createResource(org.hobbit.core.Constants.NEW_EXPERIMENT_URI);
         model.add(experimentResource, RDF.type, HOBBIT.Experiment);
         model.add(experimentResource, model.createProperty(BENCHMARK_URI+"#messages"),"200");
+
+		Property p = model.createProperty(BENCHMARK_URI + "#benchmarkMode");
+		//model.add(experimentResource, model.createProperty(BENCHMARK_PARAM_URI_PREFIX + BENCHMARK_MODE), "pipeline");
+		model.add(experimentResource, p, "pipeline");
+
+
+
+		logger.debug("----------->>>>>>>>>>>> " + model.getResource(experimentResource.getURI()).getProperty(p) );
         return model;
 
     }

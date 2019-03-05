@@ -33,10 +33,10 @@ public class BenchmarkController extends AbstractBenchmarkController {
 
         logger.info(" ---------------------     ----------      ------     --------" + iterator.next().asLiteral().getString());
 
-      //  NodeIterator iterator = benchmarkParamModel.listObjectsOfProperty(benchmarkParamModel
-      //          .getProperty(BENCHMARK_URI+"messages"));
+         iterator = benchmarkParamModel.listObjectsOfProperty(benchmarkParamModel
+                .getProperty(BENCHMARK_URI+"#benchmarkMode"));
 
-     //   logger.info("messages:                 " + iterator.next().asLiteral().getString());
+        logger.info(" ---------------------     ----------      ------     --------" + iterator.next().asLiteral().getString());
 
         // Create the other components
 

@@ -37,6 +37,8 @@ public class SystemAdapter extends AbstractSystemAdapter {
                 parameters.put(parameter.getLocalName(), value);
             }
         }
+
+        logger.debug("----------->>>>>>>>>>>> " + parameters.get("systemParam123"));
     }
 
     @Override
