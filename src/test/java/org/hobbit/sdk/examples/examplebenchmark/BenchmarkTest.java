@@ -133,6 +133,7 @@ public class BenchmarkTest {
         init(useCachedImages);
 
         rabbitMqDockerizer = RabbitMqDockerizer.builder().useCachedContainer().build();
+        rabbitMqDockerizer.run();
 
         environmentVariables.set(RABBIT_MQ_HOST_NAME_KEY, "rabbit");
         environmentVariables.set(HOBBIT_SESSION_ID_KEY, "session_"+String.valueOf(new Date().getTime()));
@@ -158,7 +159,7 @@ public class BenchmarkTest {
         commandQueueListener = new CommandQueueListener();
         componentsExecutor = new ComponentsExecutor();
 
-        rabbitMqDockerizer.run();
+
 
 
         //comment the .systemAdapter(systemAdapter) line below to use the code for running from python
@@ -183,7 +184,7 @@ public class BenchmarkTest {
         String benchmarkContainerId = "benchmark";
         String systemContainerId = "system";
 
-        componentsExecutor.submit(benchmarkController, benchmarkContainerId, new String[]{ HOBBIT_EXPERIMENT_URI_KEY+"="+NEW_EXPERIMENT_URI,  BENCHMARK_PARAMETERS_MODEL_KEY+"="+ createBenchmarkParameters() });
+        componentsExecutor.submit(benchmarkController, benchmarkContainerId, new String[]{ HOBBIT_EXPERIMENT_URI_KEY+"="+NEW_EXPERIMENT_URI,   BENCHMARK_PARAMETERS_MODEL_KEY+"="+ RabbitMQUtils.writeModel2String(createBenchmarkParameters() ) });
         componentsExecutor.submit(systemAdapter, systemContainerId, new String[]{ SYSTEM_PARAMETERS_MODEL_KEY+"="+ createSystemParameters() });
 
         //Alternative. Start components via command queue (will be executed by the platform (if running))
