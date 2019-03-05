@@ -125,8 +125,8 @@ public class BenchmarkTest {
 
     private void checkHealth(Boolean dockerized) throws Exception {
 
-    //    String[] benchmarkParamsStr = new String[]{ HOBBIT_EXPERIMENT_URI_KEY+"="+NEW_EXPERIMENT_URI,  BENCHMARK_PARAMETERS_MODEL_KEY+"="+ RabbitMQUtils.writeModel2String(ModelsHandler.createMergedParametersModel(createBenchmarkParameters(), ModelsHandler.readModelFromFile("benchmark.ttl"))) };
-    //    String [] systemParamsStr = new String[]{ SYSTEM_PARAMETERS_MODEL_KEY+"="+  RabbitMQUtils.writeModel2String(ModelsHandler.createMergedParametersModel(createSystemParameters(), ModelsHandler.readModelFromFile("system.ttl"))) };
+        String[] benchmarkParamsStr = new String[]{ HOBBIT_EXPERIMENT_URI_KEY+"="+NEW_EXPERIMENT_URI,  BENCHMARK_PARAMETERS_MODEL_KEY+"="+ RabbitMQUtils.writeModel2String(ModelsHandler.createMergedParametersModel(createBenchmarkParameters(), ModelsHandler.readModelFromFile("benchmark.ttl"))) };
+        String [] systemParamsStr = new String[]{ SYSTEM_PARAMETERS_MODEL_KEY+"="+  RabbitMQUtils.writeModel2String(ModelsHandler.createMergedParametersModel(createSystemParameters(), ModelsHandler.readModelFromFile("system.ttl"))) };
 
 
         Boolean useCachedImages = true;
@@ -187,8 +187,8 @@ public class BenchmarkTest {
         componentsExecutor.submit(systemAdapter, systemContainerId, new String[]{ SYSTEM_PARAMETERS_MODEL_KEY+"="+ createSystemParameters() });
 
         //Alternative. Start components via command queue (will be executed by the platform (if running))
-      //  benchmarkContainerId = commandQueueListener.createContainer(benchmarkBuilder.getImageName(), "benchmark", benchmarkParamsStr);
-      //  systemContainerId = commandQueueListener.createContainer(systemAdapterBuilder.getImageName(), "system" , systemParamsStr);
+        benchmarkContainerId = commandQueueListener.createContainer(benchmarkBuilder.getImageName(), "benchmark", benchmarkParamsStr);
+        systemContainerId = commandQueueListener.createContainer(systemAdapterBuilder.getImageName(), "system" , systemParamsStr);
 
         environmentVariables.set("BENCHMARK_CONTAINER_ID", benchmarkContainerId);
         environmentVariables.set("SYSTEM_CONTAINER_ID", systemContainerId);
@@ -205,11 +205,11 @@ public class BenchmarkTest {
         Model model = createDefaultModel();
         Resource experimentResource = model.createResource(org.hobbit.core.Constants.NEW_EXPERIMENT_URI);
         model.add(experimentResource, RDF.type, HOBBIT.Experiment);
-        model.add(experimentResource, model.createProperty(BENCHMARK_URI+"#messages"),"200");
+        model.add(experimentResource, model.createProperty(BENCHMARK_URI+"#messages"),"100");
 
 		Property p = model.createProperty(BENCHMARK_URI + "#benchmarkMode");
 		//model.add(experimentResource, model.createProperty(BENCHMARK_PARAM_URI_PREFIX + BENCHMARK_MODE), "pipeline");
-		model.add(experimentResource, p, "pipeline");
+		model.add(experimentResource, p, "Pipeline");
 
 
 
