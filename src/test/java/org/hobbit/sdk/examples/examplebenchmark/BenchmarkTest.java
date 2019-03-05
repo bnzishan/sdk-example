@@ -187,8 +187,8 @@ public class BenchmarkTest {
         componentsExecutor.submit(systemAdapter, systemContainerId, new String[]{ SYSTEM_PARAMETERS_MODEL_KEY+"="+ createSystemParameters() });
 
         //Alternative. Start components via command queue (will be executed by the platform (if running))
-        benchmarkContainerId = commandQueueListener.createContainer(benchmarkBuilder.getImageName(), "benchmark", benchmarkParamsStr);
-        systemContainerId = commandQueueListener.createContainer(systemAdapterBuilder.getImageName(), "system" , systemParamsStr);
+      //  benchmarkContainerId = commandQueueListener.createContainer(benchmarkBuilder.getImageName(), "benchmark", benchmarkParamsStr);
+      //  systemContainerId = commandQueueListener.createContainer(systemAdapterBuilder.getImageName(), "system" , systemParamsStr);
 
         environmentVariables.set("BENCHMARK_CONTAINER_ID", benchmarkContainerId);
         environmentVariables.set("SYSTEM_CONTAINER_ID", systemContainerId);
@@ -213,7 +213,7 @@ public class BenchmarkTest {
 
 
 
-		logger.debug("----------->>>>>>>>>>>> " + model.getResource(experimentResource.getURI()).getProperty(p) );
+		logger.debug("bm mode check----------->>>>>>>>>>>> " + model.getResource(experimentResource.getURI()).getProperty(p) );
         return model;
 
     }
@@ -222,7 +222,7 @@ public class BenchmarkTest {
         Model model = createDefaultModel();
         Resource experimentResource = model.createResource(org.hobbit.core.Constants.NEW_EXPERIMENT_URI);
         model.add(experimentResource, RDF.type, HOBBIT.Experiment);
-        model.add(experimentResource, model.createProperty(BENCHMARK_URI+"#systemParam123"),"100");
+        model.add(experimentResource, model.createProperty(SYSTEM_URI+"#systemParam123"),"10");
         return model;
     }
 

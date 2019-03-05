@@ -14,6 +14,8 @@ import java.util.HashMap;
 import java.util.IdentityHashMap;
 import java.util.Map;
 
+import static org.hobbit.sdk.examples.examplebenchmark.Constants.SYSTEM_URI;
+
 
 public class SystemAdapter extends AbstractSystemAdapter {
     private static final Logger logger = LoggerFactory.getLogger(SystemAdapter.class);
@@ -38,7 +40,12 @@ public class SystemAdapter extends AbstractSystemAdapter {
             }
         }
 
-        logger.debug("----------->>>>>>>>>>>> " + parameters.get("systemParam123"));
+        logger.debug("SA ----------->>>>>>>>>>>> " + parameters.get("systemParam123"));
+
+        objIterator = systemParamModel.listObjectsOfProperty(systemParamModel
+                .getProperty(SYSTEM_URI+"#messages"));
+
+        logger.info(" SA ----     -----      ------     --------" + iterator.next().asLiteral().getString());
     }
 
     @Override
