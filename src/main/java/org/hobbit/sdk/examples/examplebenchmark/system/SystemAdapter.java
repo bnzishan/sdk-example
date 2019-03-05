@@ -29,10 +29,10 @@ public class SystemAdapter extends AbstractSystemAdapter {
         //Getting default values from system.ttl
         Property parameter;
         NodeIterator objIterator;
-        ResIterator iterator = systemParamModel.listResourcesWithProperty(RDF.type, HOBBIT.Parameter);
-        Property defaultValProperty = systemParamModel.getProperty("http://w3id.org/hobbit/vocab#defaultValue");
-        while (iterator.hasNext()) {
-            parameter = systemParamModel.getProperty(iterator.next().getURI());
+        ResIterator resIterator = systemParamModel.listResourcesWithProperty(RDF.type, HOBBIT.Parameter);
+        Property defaultValProperty = systemParamModel.getProperty(SYSTEM_URI+"#systemParam123");
+        while (resIterator.hasNext()) {
+            parameter = systemParamModel.getProperty(resIterator.next().getURI());
             objIterator = systemParamModel.listObjectsOfProperty(parameter, defaultValProperty);
             while (objIterator.hasNext()) {
                 String value = objIterator.next().asLiteral().getString();
